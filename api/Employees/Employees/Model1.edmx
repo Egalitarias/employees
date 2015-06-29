@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EmployeesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EmployeesModelStoreContainer">
+          <EntitySet Name="Administrators" EntityType="EmployeesModel.Store.Administrators" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Attributes" EntityType="EmployeesModel.Store.Attributes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contacts" EntityType="EmployeesModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Employees" EntityType="EmployeesModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Passports" EntityType="EmployeesModel.Store.Passports" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Photos" EntityType="EmployeesModel.Store.Photos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Telephones" EntityType="EmployeesModel.Store.Telephones" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Contacts_Employees" Association="EmployeesModel.Store.FK_Contacts_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passports_Employees" Association="EmployeesModel.Store.FK_Passports_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Passports" EntitySet="Passports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photos_Employees" Association="EmployeesModel.Store.FK_Photos_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Photos" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Telephones_Employees" Association="EmployeesModel.Store.FK_Telephones_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Telephones" EntitySet="Telephones" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Administrators">
+          <Key>
+            <PropertyRef Name="AdministratorId" />
+          </Key>
+          <Property Name="AdministratorId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Attributes">
+          <Key>
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Name="AttributeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Value" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nchar" MaxLength="100" />
+          <Property Name="Address" Type="nchar" MaxLength="100" />
+          <Property Name="PhoneNo" Type="nchar" MaxLength="15" />
+          <Property Name="MobileNo" Type="nchar" MaxLength="15" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FamilyName" Type="nchar" MaxLength="100" />
+          <Property Name="GivenName" Type="nchar" MaxLength="100" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="Title" Type="nchar" MaxLength="20" />
+          <Property Name="Address" Type="nchar" MaxLength="300" />
+          <Property Name="Telephone" Type="nchar" MaxLength="10" />
+          <Property Name="Mobile" Type="nchar" MaxLength="10" />
+          <Property Name="Email" Type="nchar" MaxLength="100" />
+          <Property Name="TaxFileNumber" Type="nchar" MaxLength="9" />
+          <Property Name="CompanyName" Type="nchar" MaxLength="50" />
+          <Property Name="AustralianBusinessNumber" Type="nchar" MaxLength="11" />
+          <Property Name="BSBNumber" Type="nchar" MaxLength="6" />
+          <Property Name="AccountNumber" Type="nchar" MaxLength="15" />
+          <Property Name="BankName" Type="nchar" MaxLength="50" />
+          <Property Name="BankBranch" Type="nchar" MaxLength="50" />
+          <Property Name="AccountName" Type="nchar" MaxLength="100" />
+          <Property Name="SuperFundName" Type="nchar" MaxLength="100" />
+          <Property Name="MemberNumber" Type="nchar" MaxLength="20" />
+          <Property Name="QantasFrequentFlyerNumber" Type="nchar" MaxLength="20" />
+          <Property Name="VirginVelocityNumber" Type="nchar" MaxLength="20" />
+          <Property Name="EmiratesSkywardsNumber" Type="nchar" MaxLength="20" />
+          <Property Name="OthersNumber" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Passports">
+          <Key>
+            <PropertyRef Name="PassportId" />
+          </Key>
+          <Property Name="PassportId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PassportNumber" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Nationality" Type="nchar" MaxLength="50" />
+          <Property Name="VisaType" Type="nchar" MaxLength="10" />
+          <Property Name="VisaNumber" Type="nchar" MaxLength="20" />
+          <Property Name="VisasIssueDate" Type="date" />
+          <Property Name="VisasExpiryDate" Type="date" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Photos">
+          <Key>
+            <PropertyRef Name="PhotoId" />
+          </Key>
+          <Property Name="PhotoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="nchar" Nullable="false" MaxLength="100" />
+          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Telephones">
+          <Key>
+            <PropertyRef Name="TelephoneId" />
+          </Key>
+          <Property Name="TelephoneId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="nchar" MaxLength="15" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Contacts_Employees">
+          <End Role="Employees" Type="EmployeesModel.Store.Employees" Multiplicity="1" />
+          <End Role="Contacts" Type="EmployeesModel.Store.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passports_Employees">
+          <End Role="Employees" Type="EmployeesModel.Store.Employees" Multiplicity="1" />
+          <End Role="Passports" Type="EmployeesModel.Store.Passports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Passports">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photos_Employees">
+          <End Role="Employees" Type="EmployeesModel.Store.Employees" Multiplicity="1" />
+          <End Role="Photos" Type="EmployeesModel.Store.Photos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Photos">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Telephones_Employees">
+          <End Role="Employees" Type="EmployeesModel.Store.Employees" Multiplicity="1" />
+          <End Role="Telephones" Type="EmployeesModel.Store.Telephones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Telephones">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmployeesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EmployeesEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Contacts" EntityType="EmployeesModel.Contact" />
+          <EntitySet Name="Employees" EntityType="EmployeesModel.Employee" />
+          <EntitySet Name="Passports" EntityType="EmployeesModel.Passport" />
+          <EntitySet Name="Telephones" EntityType="EmployeesModel.Telephone" />
+          <AssociationSet Name="FK_Contacts_Employees" Association="EmployeesModel.FK_Contacts_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passports_Employees" Association="EmployeesModel.FK_Passports_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Passports" EntitySet="Passports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Telephones_Employees" Association="EmployeesModel.FK_Telephones_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Telephones" EntitySet="Telephones" />
+          </AssociationSet>
+          <EntitySet Name="Administrators" EntityType="EmployeesModel.Administrator" />
+          <EntitySet Name="Attributes" EntityType="EmployeesModel.Attribute" />
+          <EntitySet Name="Photos" EntityType="EmployeesModel.Photo" />
+          <AssociationSet Name="FK_Photos_Employees" Association="EmployeesModel.FK_Photos_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Photo" EntitySet="Photos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="Address" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="15" Unicode="true" FixedLength="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="15" Unicode="true" FixedLength="true" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="EmployeesModel.FK_Contacts_Employees" FromRole="Contacts" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FamilyName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="GivenName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="Title" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Address" Type="String" MaxLength="300" Unicode="true" FixedLength="true" />
+          <Property Name="Telephone" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Mobile" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="TaxFileNumber" Type="String" MaxLength="9" Unicode="true" FixedLength="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="AustralianBusinessNumber" Type="String" MaxLength="11" Unicode="true" FixedLength="true" />
+          <Property Name="BSBNumber" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+          <Property Name="AccountNumber" Type="String" MaxLength="15" Unicode="true" FixedLength="true" />
+          <Property Name="BankName" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="BankBranch" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="AccountName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="SuperFundName" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+          <Property Name="MemberNumber" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="QantasFrequentFlyerNumber" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="VirginVelocityNumber" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="EmiratesSkywardsNumber" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="OthersNumber" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Contacts" Relationship="EmployeesModel.FK_Contacts_Employees" FromRole="Employees" ToRole="Contacts" />
+          <NavigationProperty Name="Passports" Relationship="EmployeesModel.FK_Passports_Employees" FromRole="Employees" ToRole="Passports" />
+          <NavigationProperty Name="Telephones" Relationship="EmployeesModel.FK_Telephones_Employees" FromRole="Employees" ToRole="Telephones" />
+          <NavigationProperty Name="Photos" Relationship="EmployeesModel.FK_Photos_Employees" FromRole="Employee" ToRole="Photo" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="PassportId" />
+          </Key>
+          <Property Name="PassportId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Nationality" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+          <Property Name="VisaType" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="VisaNumber" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="VisasIssueDate" Type="DateTime" Precision="0" />
+          <Property Name="VisasExpiryDate" Type="DateTime" Precision="0" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="EmployeesModel.FK_Passports_Employees" FromRole="Passports" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Telephone">
+          <Key>
+            <PropertyRef Name="TelephoneId" />
+          </Key>
+          <Property Name="TelephoneId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" MaxLength="15" Unicode="true" FixedLength="true" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="EmployeesModel.FK_Telephones_Employees" FromRole="Telephones" ToRole="Employees" />
+        </EntityType>
+        <Association Name="FK_Contacts_Employees">
+          <End Role="Employees" Type="EmployeesModel.Employee" Multiplicity="1" />
+          <End Role="Contacts" Type="EmployeesModel.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passports_Employees">
+          <End Role="Employees" Type="EmployeesModel.Employee" Multiplicity="1" />
+          <End Role="Passports" Type="EmployeesModel.Passport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Passports">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Telephones_Employees">
+          <End Role="Employees" Type="EmployeesModel.Employee" Multiplicity="1" />
+          <End Role="Telephones" Type="EmployeesModel.Telephone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Telephones">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="AdministratorId" />
+          </Key>
+          <Property Type="Int32" Name="AdministratorId" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Attribute">
+          <Key>
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Type="Int32" Name="AttributeId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Value" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="PhotoId" />
+          </Key>
+          <Property Type="Int32" Name="PhotoId" Nullable="false" />
+          <Property Type="String" Name="FileName" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="Binary" Name="Image" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="EmployeesModel.FK_Photos_Employees" FromRole="Photo" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Photos_Employees">
+          <End Type="EmployeesModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="EmployeesModel.Photo" Role="Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmployeesModelStoreContainer" CdmEntityContainer="EmployeesEntities">
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="EmployeesModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="EmployeesModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
+                <ScalarProperty Name="GivenName" ColumnName="GivenName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TaxFileNumber" ColumnName="TaxFileNumber" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="AustralianBusinessNumber" ColumnName="AustralianBusinessNumber" />
+                <ScalarProperty Name="BSBNumber" ColumnName="BSBNumber" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankBranch" ColumnName="BankBranch" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="SuperFundName" ColumnName="SuperFundName" />
+                <ScalarProperty Name="MemberNumber" ColumnName="MemberNumber" />
+                <ScalarProperty Name="QantasFrequentFlyerNumber" ColumnName="QantasFrequentFlyerNumber" />
+                <ScalarProperty Name="VirginVelocityNumber" ColumnName="VirginVelocityNumber" />
+                <ScalarProperty Name="EmiratesSkywardsNumber" ColumnName="EmiratesSkywardsNumber" />
+                <ScalarProperty Name="OthersNumber" ColumnName="OthersNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passports">
+            <EntityTypeMapping TypeName="EmployeesModel.Passport">
+              <MappingFragment StoreEntitySet="Passports">
+                <ScalarProperty Name="PassportId" ColumnName="PassportId" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="VisaType" ColumnName="VisaType" />
+                <ScalarProperty Name="VisaNumber" ColumnName="VisaNumber" />
+                <ScalarProperty Name="VisasIssueDate" ColumnName="VisasIssueDate" />
+                <ScalarProperty Name="VisasExpiryDate" ColumnName="VisasExpiryDate" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Telephones">
+            <EntityTypeMapping TypeName="EmployeesModel.Telephone">
+              <MappingFragment StoreEntitySet="Telephones">
+                <ScalarProperty Name="TelephoneId" ColumnName="TelephoneId" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Administrators">
+            <EntityTypeMapping TypeName="EmployeesModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrators">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AdministratorId" ColumnName="AdministratorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attributes">
+            <EntityTypeMapping TypeName="EmployeesModel.Attribute">
+              <MappingFragment StoreEntitySet="Attributes">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photos">
+            <EntityTypeMapping TypeName="EmployeesModel.Photo">
+              <MappingFragment StoreEntitySet="Photos">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="PhotoId" ColumnName="PhotoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
